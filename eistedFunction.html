@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <br><br><br><button onclick="functions()">run bai1</button>
+
+    <br><br><br><button onclick="fJoin()">run bai2 join()</button>
+
+    <br><br><br><button onclick="swapCase()">run bai3 swapCase()</button>
+
+    <script>
+        function functions() {
+            let arr = ["Red", "Green", "White", "Black"];
+
+            console.log(arr.toString());
+            console.log(arr.join());
+            console.log(arr.join("+"));
+
+            console.log(arr.join("&"))
+        }
+
+        function fJoin() {
+            let num = prompt('nhập chuỗi số: ');
+            let str = num.toString();
+            let arr = [str[0]];
+
+            for (let i = 1; i < str.length; i++) {
+                if (str[i - 1] % 2 == 0 && str[i] % 2 == 0) {
+                    arr.push('-', str[i]);
+                } else {
+                    arr.push(str[i]);
+                }
+            }
+            console.log(arr.join());
+        }
+
+        function swapCase() {
+            let str = prompt('input your string: ');
+
+            let UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let LOWER = 'abcdefghijklmnopqrstuvwxyz';
+            let result = [];
+
+            for (let i = 0; i < str.length; i++) {
+                if (UPPER.indexOf(str[i]) != -1) {
+                    result.push(str[i].toLowerCase());
+                } else if (LOWER.indexOf(str[i]) != -1) {
+                    result.push(str[i].toUpperCase());
+                } else {
+                    result.push(str[i]);
+                }
+            }
+            console.log(result.join(''))
+        }
+    </script>
+</body>
+
+</html>
