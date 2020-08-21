@@ -8,6 +8,50 @@
 
 <body>
 
+    <lengend>Translator</lengend>
+    <br>
+    <label for="vie">nhập tiếng Việt</label>
+    <input type="text" id="vie" value="">
+    <br><br>
+    <label for="eng">nhập tiếng Anh</label>
+    <input type="text" id="eng" value="">
+    <br><br>
+    <button onclick="trans()">Translate</button>
+
+    <p id="result"></p>
+    <script>
+        function trans() {
+            let eng = ["cat", "dog", "fish", "snake"];
+            let vie = ['mèo', "chó", "cá", "rắn"];
+
+            let getE = document.getElementById("eng"),
+                getV = document.getElementById('vie'),
+                indexV, indexE, e, v, result;
+
+            e = getE.value;
+            v = getV.value;
+            indexV = vie.indexOf(v);
+            indexE = eng.indexOf(e);
+
+            console.log(indexV);
+            for (let i = 0; i < eng.length; i++) {
+                if (e != '' || v != '') {
+                    if (indexE != -1) {
+                        result = vie[indexE];
+                        i = eng.length;
+                    } else if (indexV != -1) {
+                        result = eng[indexV];
+                        i = eng.length;
+                    } else {
+                        result = 'Unknown';
+                    }
+                } else {
+                    alert('input sth!');
+                }
+            }
+            document.getElementById('result').innerHTML = "Result: " + result;
+        }
+    </script>
 </body>
 
 </html>

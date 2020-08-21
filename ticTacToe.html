@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Caro Game Simple</h3>
+    <p id="board" />
+    <p id="result"></p>
+    <!-- <input type="button" value="Change Value" onclick="changeValue()"> -->
+    <!-- <br/><br/><input type='button' value='Player1 Change Value' onclick='changeValue1()'>
+<br/><br/><input type='button' value='Player2 Change Value' onclick='changeValue2()'> -->
+</body>
+
+</html>
+
+<script>
+    let b = document.getElementById('board');
+    let para = 'x',
+        val;
+
+
+    let board = [];
+    let data = '<table border="1">';
+
+    for (let i = 0; i < 3; i++) {
+        board[i] = new Array('.', '.', '.');
+    }
+
+    for (let i = 0; i < 3; i++) {
+        data += '<tr>';
+        for (let j = 0; j < 3; j++) {
+            data += '<td>' + board[i][j] + "</td>";
+        }
+    }
+    data += "</table><br/><br/><input type='button' value='start' onclick='start()'>";
+    b.innerHTML = data;
+
+    ////
+    function start() {
+        if (para == 'x') {
+            alert('player1: ');
+            changeValue('x');
+            para = 'o';
+        } else if (para == 'o') {
+            alert('player2: ');
+            changeValue('o');
+            para = 'x';
+        }
+        b.innerHTML = data;
+        check();
+
+    }
+
+    function changeValue(value) {
+        let posX = prompt('nhập x: ');
+        let posY = prompt('nhập y: ');
+        data = '';
+
+        while (posX < 0 || posX > 2 || posY < 0 || posY > 2 || board[posX][posY] != '.') {
+            alert('input again');
+            posX = parseInt(prompt('nhập x: '));
+            posY = parseInt(prompt('nhập y: '));
+        }
+
+        board[posX][posY] = value;
+        for (let i = 0; i < 3; i++) {
+            data += '<table border="1">';
+            for (let j = 0; j < 3; j++) {
+                data += '<td>' + board[j][i] + "</td>";
+            }
+        }
+        data += "</table><br/><br/><input type='button' value='Start' onclick='start()'>";
+        b.innerHTML = data;
+    }
+
+    function check() {
+        let check1 = board[0][0] == board[0][1] && board[0][0] == board[0][2] && board[0][0] !== '.',
+            check2 = board[1][0] == board[1][1] && board[1][0] == board[1][2] && board[1][0] !== '.',
+            check3 = board[2][0] == board[2][1] && board[2][0] == board[2][2] && board[2][0] !== '.',
+
+            check4 = board[0][0] == board[1][0] && board[0][0] == board[2][0] && board[0][0] !== '.',
+            check5 = board[0][1] == board[1][1] && board[0][1] == board[2][1] && board[0][1] !== '.',
+            check6 = board[0][2] == board[1][2] && board[0][2] == board[2][2] && board[0][2] !== '.',
+
+            check7 = board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] !== '.',
+            check8 = board[2][0] == board[1][1] && board[2][0] == board[0][2] && board[2][0] !== '.';
+
+        let check = check1 || check2 || check3 || check4 || check5 || check6 || check7 || check8;
+
+        if (check) {
+            alert('game over');
+            b.innerHTML = "game over!!";
+            //document.getElementById('result').innerHTML = 'game over';
+        }
+        console.log(check);
+    }
+</script>
