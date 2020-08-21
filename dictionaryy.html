@@ -30,25 +30,35 @@
 
             e = getE.value;
             v = getV.value;
-            indexV = vie.indexOf(v);
-            indexE = eng.indexOf(e);
 
-            console.log(indexV);
             for (let i = 0; i < eng.length; i++) {
-                if (e != '' || v != '') {
-                    if (indexE != -1) {
-                        result = vie[indexE];
-                        i = eng.length;
-                    } else if (indexV != -1) {
-                        result = eng[indexV];
-                        i = eng.length;
-                    } else {
-                        result = 'Unknown';
-                    }
+                if (e === eng[i]) {
+                    indexE = i;
+                    break;
                 } else {
-                    alert('input sth!');
+                    indexE = -1;
+                }
+                if (v === vie[i]) {
+                    indexV = i;
+                    break;
+                } else {
+                    indexV = -1;
                 }
             }
+            // indexV = vie.indexOf(v);
+            // indexE = eng.indexOf(e);
+            if (e != '' || v != '') {
+                if (indexE != -1) {
+                    result = vie[indexE];
+                } else if (indexV != -1) {
+                    result = eng[indexV];
+                } else {
+                    result = 'Unknown';
+                }
+            } else {
+                alert('input sth!');
+            }
+            // }
             document.getElementById('result').innerHTML = "Result: " + result;
         }
     </script>
